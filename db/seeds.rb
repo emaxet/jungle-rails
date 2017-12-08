@@ -132,5 +132,20 @@ cat3.products.create!({
   price: 2_483.75
 })
 
+puts "Creating new reviews..."
+
+Review.create!({
+  product_id: 1,
+  user_id: 1,
+  description: 'Magnificent. This product changed my life',
+  rating: 5
+})
+
+Review.create!({
+  product_id: 1,
+  user_id: 2,
+  description: 'Terrible. This product sucks...',
+  rating: 5
+})
 
 puts "DONE!"

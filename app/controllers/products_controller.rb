@@ -5,7 +5,10 @@ class ProductsController < ApplicationController
   end
 
   def show
+    @user = current_user
     @product = Product.find params[:id]
+    @reviews = Review.all.where(product_id: params[:id])
+    @review = Review.new
   end
 
 end

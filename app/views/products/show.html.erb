@@ -28,4 +28,32 @@
 
   </article>
 
+  <article class="product-reviews">
+    <div class="row">
+      <h2>Reviews</h2>
+      <div class="col-sm-6 col-sm-offset-0">
+        <%= form_for [@product, @review] do |f| %>
+
+        <div class="form-group">
+        <%= f.label :rating %><br>
+        <%= f.select :rating, options_for_select(1..5), { prompt: "Select One" }%>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :description %><br>
+          <%= text_area_tag(:description, "What are your thoughts on this product?") %>
+        </div>
+
+        <%= f.submit "Submit Review" %>
+        <% end %>
+        <% @reviews.each do |review| %>
+          <div><%= review.rating %> - <%= review.description %></div>
+          <% if @user.id == review.user_id %>
+            <div><%= link_to 'Delete', product_review_path(@product.id, review.id), method: :delete, :class => "delete-review" %></div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </article>
+
 </section>
